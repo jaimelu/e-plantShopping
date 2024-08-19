@@ -20,18 +20,21 @@ export const CartSlice = createSlice({
         
         removeItem: (state, action) => {
             console.log("removeItem called");
-
+        
+            // Find the item to remove by matching the name
             const itemToRemove = state.items.find(item => item.name === action.payload);
-
+        
+            // Ensure that itemToRemove is found before attempting to update the total quantity
             if (itemToRemove) {
-            // Subtract the item's quantity from the total quantity
-            state.totalQuantity -= itemToRemove.quantity;
-            console.log(`state.totalQuantity: ${state.totalQuantity}`);
-
-            state.items = state.items.filter(item => item.name !== action.payload);
+                // Subtract the item's quantity from the total quantity
+                state.totalQuantity -= itemToRemove.quantity;
+                console.log(`state.totalQuantity: ${state.totalQuantity}`);
+        
+                // Filter out the item from the items array
+                state.items = state.items.filter(item => item.name !== action.payload);
             }
         },
-
+        
         
 
         updateQuantity: (state, action) => {
