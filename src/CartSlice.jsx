@@ -17,16 +17,20 @@ export const CartSlice = createSlice({
         },
         
         removeItem: (state, action) => {
+            console.log("removeItem called");
             state.items = state.items.filter(item => item.name !== action.payload);
         },
+        
 
         updateQuantity: (state, action) => {
+            console.log(`updateQuantity called with state: ${state.items} and action: ${action}` )
             const { name, quantity } = action.payload;
+            console.log(`Received name: ${name}, received quantity: ${quantity}`)
             const itemToUpdate = state.items.find(item => item.name === name);
+            console.log(`itemToUpdate: ${itemToUpdate}`)
             if (itemToUpdate) {
                 itemToUpdate.quantity = quantity;
             }
-
         },
     },
 });
